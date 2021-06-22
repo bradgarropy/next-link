@@ -14,6 +14,12 @@ _🔗 link component for [`next`][next]_
 
 [Next][next] provides a [`<Link>`][link] component for routing between internal pages. For external links, you have to use a regular `<a>` tag. This `next-link` package solves that issue by providing a `<Link>` component that handles both internal and external urls.
 
+<p align="center">
+    <a href="https://www.npmjs.com/package/@bradgarropy/next-link">
+        <img alt="next link" src="./images/github.png" width="500">
+    </a>
+</p>
+
 ## 📦 Installation
 
 This package is hosted on [`npm`][npm].
