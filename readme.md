@@ -1,4 +1,4 @@
-# 🔗 link component for next
+# 🔗 next link
 
 [![version][version-badge]][npm]
 [![downloads][downloads-badge]][npm]
@@ -12,6 +12,8 @@
 
 _🔗 link component for [`next`][next]_
 
+[Next][next] provides a [`<Link>`][link] component for routing between internal pages. For external links, you have to use a regular `<a>` tag. This `next-link` package solves that issue by providing a `<Link>` component that handles both internal and external urls.
+
 ## 📦 Installation
 
 This package is hosted on [`npm`][npm].
@@ -22,11 +24,39 @@ npm install @bradgarropy/next-link
 
 ## 🥑 Usage
 
-// TODO: Write usage section.
+For both internal and external links, use the `Link` component and pass it a `to` prop.
+
+```jsx
+import Link from "@bradgarropy/next-link"
+
+const App = () => {
+    return <Link to="https://bradgarropy.com">website</Link>
+}
+```
 
 ## 📖 API Reference
 
-// TODO: Write api reference section.
+### `<Link>`
+
+| Name | Required | Default | Example                                    | Description               |
+| :--- | :------: | :-----: | :----------------------------------------- | :------------------------ |
+| `to` |  `true`  |         | `"/home"` <br> `"https://bradgarropy.com"` | Internal or external url. |
+
+The component also passes through all other `props`, like `className` or `passHref`. See the [`next/link`][link] documentation for other relevant props. The examples below cover some common uses.
+
+```jsx
+// internal link
+<Link to="/home">home</Link>
+
+// internal link with additional props
+<Link to="/home" className="nav-link">home</Link>
+
+// external link
+<Link to="https://bradgarropy.com">website</Link>
+
+// external link with additional props
+<Link to="https://bradgarropy.com" className="nav-link">website</Link>
+```
 
 ## ❔ Questions
 
@@ -71,3 +101,4 @@ npm install @bradgarropy/next-link
 [discord]: https://bradgarropy.com/discord
 [discord-badge]: https://img.shields.io/discord/748196643140010015?style=flat-square
 [next]: https://nextjs.org
+[link]: https://nextjs.org/docs/api-reference/next/link
