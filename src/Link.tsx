@@ -1,21 +1,22 @@
-import NextLink from "next/link"
+import NextLink, {LinkProps as NextLinkProps} from "next/link"
 import React, {FC} from "react"
 
 type LinkProps = {
     to: string
-}
+} & Partial<NextLinkProps>
 
 const Link: FC<LinkProps> = ({to, children, ...props}) => {
     if (to.startsWith("/")) {
         return (
-            <NextLink href={to} {...props}>
-                {children}
+            <NextLink {...props} href={to}>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <a>{children}</a>
             </NextLink>
         )
     }
 
     return (
-        <a href={to} target="_blank" rel="noopener noreferrer" {...props}>
+        <a {...props} href={to} target="_blank" rel="noopener noreferrer">
             {children}
         </a>
     )
