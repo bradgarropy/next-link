@@ -1,22 +1,38 @@
 import {render, screen} from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import React from "react"
 
 import Link from "../src"
 
 test("shows html link", () => {
-    render(<Link to="https://example.com">Example</Link>)
+    const onClick = jest.fn()
 
-    expect(screen.getByText("Example")).toHaveAttribute("target", "_blank")
-
-    expect(screen.getByText("Example")).toHaveAttribute(
-        "rel",
-        "noopener noreferrer",
+    render(
+        <Link to="https://example.com" className="link" onClick={onClick}>
+            Example
+        </Link>,
     )
+
+    const nextLink = screen.getByText("Example")
+
+    expect(nextLink).toHaveAttribute("target", "_blank")
+    expect(nextLink).toHaveAttribute("rel", "noopener noreferrer")
+    expect(nextLink).toHaveClass("link")
+
+    userEvent.click(nextLink)
+    expect(onClick).toHaveBeenCalledTimes(1)
 })
 
 test("shows next link", () => {
-    render(<Link to="/example">Example</Link>)
+    render(
+        <Link to="/example" className="link">
+            Example
+        </Link>,
+    )
 
-    expect(screen.getByText("Example")).not.toHaveAttribute("target", "_blank")
-    expect(screen.getByText("Example")).not.toHaveAttribute("rel")
+    const nextLink = screen.getByText("Example")
+
+    expect(nextLink).not.toHaveAttribute("target", "_blank")
+    expect(nextLink).not.toHaveAttribute("rel")
+    expect(nextLink).toHaveClass("link")
 })

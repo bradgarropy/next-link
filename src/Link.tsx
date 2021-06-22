@@ -1,28 +1,22 @@
 import NextLink from "next/link"
-import React, {FC} from "react"
+import React, {FC, HTMLAttributes} from "react"
 
 type LinkProps = {
     to: string
-    className?: string
-}
+} & HTMLAttributes<HTMLAnchorElement>
 
-const Link: FC<LinkProps> = ({to, className, children}) => {
+const Link: FC<LinkProps> = ({to, children, ...props}) => {
     if (to.startsWith("/")) {
         return (
             <NextLink href={to} passHref>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a className={className}>{children}</a>
+                <a {...props}>{children}</a>
             </NextLink>
         )
     }
 
     return (
-        <a
-            href={to}
-            className={className}
-            target="_blank"
-            rel="noopener noreferrer"
-        >
+        <a {...props} href={to} target="_blank" rel="noopener noreferrer">
             {children}
         </a>
     )
