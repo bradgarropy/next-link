@@ -1,8 +1,10 @@
 import Head from "next/head"
-import styles from "../styles/Home.module.css"
-import Link from "../../."
+import {FC} from "react"
 
-export default function Home() {
+import Link from "../../."
+import styles from "../styles/Home.module.css"
+
+const Home: FC = () => {
     return (
         <div className={styles.container}>
             <Head>
@@ -27,3 +29,5 @@ export default function Home() {
         </div>
     )
 }
+
+export default Home
