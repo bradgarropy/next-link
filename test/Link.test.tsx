@@ -4,7 +4,7 @@ import React from "react"
 
 import Link from "../src"
 
-test("shows html link", () => {
+test("shows html link", async () => {
     const onClick = jest.fn()
 
     render(
@@ -19,13 +19,15 @@ test("shows html link", () => {
     expect(nextLink).toHaveAttribute("rel", "noopener noreferrer")
     expect(nextLink).toHaveClass("link")
 
-    userEvent.click(nextLink)
+    await userEvent.click(nextLink)
     expect(onClick).toHaveBeenCalledTimes(1)
 })
 
-test("shows next link", () => {
+test("shows next link", async () => {
+    const onClick = jest.fn()
+
     render(
-        <Link to="/example" className="link">
+        <Link to="/example" className="link" onClick={onClick}>
             Example
         </Link>,
     )
