@@ -24,8 +24,10 @@ test("shows html link", () => {
 })
 
 test("shows next link", () => {
+    const onClick = jest.fn()
+
     render(
-        <Link to="/example" className="link">
+        <Link to="/example" className="link" onClick={onClick}>
             Example
         </Link>,
     )
@@ -35,4 +37,7 @@ test("shows next link", () => {
     expect(nextLink).not.toHaveAttribute("target", "_blank")
     expect(nextLink).not.toHaveAttribute("rel")
     expect(nextLink).toHaveClass("link")
+
+    userEvent.click(nextLink)
+    expect(onClick).toHaveBeenCalledTimes(1)
 })

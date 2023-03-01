@@ -8,9 +8,8 @@ type LinkProps = {
 const Link: FC<LinkProps> = ({to, children, ...props}) => {
     if (to.startsWith("/")) {
         return (
-            <NextLink href={to} passHref>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a {...props}>{children}</a>
+            <NextLink href={to} {...props}>
+                {children}
             </NextLink>
         )
     }
